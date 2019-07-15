@@ -356,6 +356,42 @@ END {
 
 ```
 
+### 用AWK分析成绩
+
+儿子全校的成绩，本来想花点时间和儿子一起做一个小程序来分析一下， 但是儿子照样不感兴趣，也就是放弃了。
+
+把[成绩的文件](stuff/scores.csv)和写的几行代码先放这里， 以后有机会再搞搞。
+
+```awk
+
+#! /usr/bin/awk -f
+
+BEGIN {
+	FS = ","
+	if (ARGC == 3) {
+		name = ARGV[2]
+		ARGV[2] = ""
+	}
+	print "\t\t", "查分系统"
+	print "\t\t", "********"
+}
+
+{
+	if ($1 == name || $2 == name)  {
+		print "\t", "学号：","\t", $1
+		print "\t", "姓名：","\t", $2
+		print "\t", "语文：","\t", $3
+		print "\t", "数学：","\t", $4
+		print "\t", "英语：","\t", $5
+		print "\t", "----------------------"
+		print "\t", "总分：","\t", $3+$4+$5
+		printf("\t平均分：\t %.2f\n", ($3+$4+$5)/3)
+	}
+}
+
+```
+
+
 再说一下，那本`awk`作者自己关于`awk`的书真心不错。
 
 ## shell
@@ -881,4 +917,108 @@ programmingwithgo.pdf
 日本蜡烛图教程.PDF
 
 
-## 
+## ngspice
+
+用来电路仿真的开源软件，命令行格式，要是有时间，可以将电子学课本的一些内容拿到这个上面来仿真。
+
+现在越来越感觉自己的大学太浪费时间了，这么多的好东西都不知道，更别说去研究。这些都是多么有意思的东西，看这儿子对这些都不感兴趣，真的有一些心疼。
+
+放一个简单的DEMO代码：
+
+```
+
+A Berkeley SPICE3 compatible circuit
+
+.tran 1e-5 2e-3
+
+vcc vcc 0 12.0
+vin 1 0 0.0 ac 1.0 sin(0 1 1k)
+ccouple 1 base 10uF
+rbias1 vcc base 100k
+rbias2 base 0 24k
+q1 coll base emit generic
+rcollector vcc coll 3.9k
+remitter emit 0 1k
+
+.model generic npn
+
+.end
+```
+
+基本的一些命令有`listing`, 'run`, 'plot`等。
+
+## dot
+
+ 发现的好东西很多，很多都是比较古老的东西，其实都是现在看上去非常时髦的软件的内核。DOT就是这样的一个软件。
+
+注意到在LINUX上安装`graphviz`， 带有个DOTTY的可视化编辑器，当然没有很多的用处，但是由于字体问题， 可以安装新的一个包，大概是`xorg-misc`,同样的问题在前面的NGSPICE软件上也是存在的， 这里一块说一下。好像这个主要还是在ARCHLINUX才有的问题。
+
+DOT的语法相当简单，自己将常用的语法用DOT总结了一下，这里放上来：
+
+``` dot
+
+digraph G {
+	graph [rankdir=LR]
+// This is just an example for you to use as a template.
+// Edit as you like. Whenever you save a legal graph
+// the layout in the graphviz window will be updated.
+
+	"DOT REF" [shape=box]
+	"DOT REF" -> {"strict" "graph" "digraph" "node" "edge" "subgraph"}
+
+	subgraph attr {
+		node [shape=underline]
+		"graph" -> {layout rankdir clusterrank}
+		"node" -> {shape fontsize fontcolor fillcolor href}
+		"edge" -> {color arrowhead arrowtail dir label labelfontcolor style decorate}
+		"subgraph" -> rank
+
+		subgraph val {
+			node [fontsize=12 fontcolor=seagreen]
+			edge [style=dashed dir=none]
+
+			color [href="https://graphviz.gitlab.io/_pages/doc/info/colors.html"]
+
+			layout -> {dot neato }
+			rankdir -> {LR RL}
+			clusterrank -> "Default is \"local\" "
+			shape -> {underline circle rect}
+			fontsize -> "font size in point, 72 poits per inch"
+			href -> "URL link"
+			color -> {colorname "RGB #FFFFFF"}
+			arrowhead -> {tee none empty vee open }
+			dir -> {forward both back none}
+			label -> "a string to describle edge"
+			style -> {dashed dotted bold solid}
+			decorate -> "bool, modify edge's label"
+			rank -> {same min source max sink}
+		}
+	}
+
+}
+
+```
+产生的输出呢，见下面：
+
+![dot output](stuff/dot.png)
+
+## GIT
+
+GIT大名鼎鼎，不多说。在我的MANJARO和MAC之间同步文件，以前都没有很好的利用起来。
+
+总结一下：
+
+首先到自己的GITHUB帐号下建立一个空的仓库，CLONE下来，在自己的本地电脑上的工作就在这个CLONE下来的文件夹下面工作。而在本地建立好仓库在添加到远程仓库容易出现问题。
+
+这个就是说，任何在本地电脑上的操作，或者想建立新的文件夹，不如去GITHUB上开立一个新的仓库。进一步，当自己的在本地电脑上使用`mkdir`命令的时候，心里要掂量一下有没有必要，还是直接到哦啊GITHUB上建立空的仓库更好。
+
+简单的3个步骤：
+
+- git add *
+- git commint -m msg
+- git push origin master
+
+可以将这三个命令结合在一起，看上去还是没有必要性，尤其是第二步，写一个好的COMMIT MESSAGE是一个非常重要的工作，没有必要简化。
+
+今天在GITHUB上新建仓库的时候，居然发现可以建立私有的仓库，以前好像这个是要收费的哦。
+
