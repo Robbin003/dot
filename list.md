@@ -1022,3 +1022,26 @@ GIT大名鼎鼎，不多说。在我的MANJARO和MAC之间同步文件，以前�
 
 今天在GITHUB上新建仓库的时候，居然发现可以建立私有的仓库，以前好像这个是要收费的哦。
 
+## xsel
+
+LINUX的复制和粘帖命令。
+
+```dot
+
+digraph {
+	edge [fontsize=7 ]
+	GUI -> clipboard [label = "在GUI下弹出菜单中选择 复制"] 
+	clipboard -> "Command line" [ label="在命令行下按下shift + Insert"]
+	"Command line" -> clipboard [ label="命令： xsel < file, or cat file | xsel"]
+	clipboard -> GUI [ label="在GUI下弹出菜单中选择 粘帖"]
+}
+
+```
+效果如下：
+![](stuff/xsel.png)
+
+补充两个命令：
+
+- **在VIM中直接运行代码： % 或这 '<,> 也就是要运行的代码范围， 然后是 `w !dot -Tpng -o filename.png`；使用`w`命令把相关的内容写出给文件或者标准的输出; **
+- **一个很小的没有注意的地方： 在DOT语法中，要使用双引号，而不是单引号，单引号会出错。**
+
