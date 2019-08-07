@@ -114,8 +114,6 @@ func main() {
 将书的作者的README直接放上来：
 
 > 
-![Python Playground](cover.png)
-
 Code for all the projects in the book Python Playground published by
 No Starch Press, USA.
 
@@ -313,7 +311,7 @@ function initnum() {
 
 ```
 
-后面3个函数的代码可以copy&paste一下，呵呵。
+后面3个函数的代码可以copy\&paste一下，呵呵。
 
 下面是一个简单的计算利息的工具，有点小意思，这样的应用利用`awk`来写是最合适的。
 
@@ -898,24 +896,24 @@ open an issue on [GitHub](https://github.com/visit1985/mdp).
 
 这是一些自己收集的pdf，放在自己主目录的books目录下。
 
-
+\begin{verbatim}
 Callback Hell.pdf
 Go 1.5 源码剖析.pdf
-LINUX SHELL脚本攻略(中文版带书签).pdf
+LINUX SHELL脚本攻略.pdf
 PlantUML_Language_Reference_Guide_zh.pdf
 The Little Book on CoffeeScript.pdf
 The _principles_of_least_action.pdf
 TheLinuxCommandLine.pdf
 The_AWK_Programming_Language_zh_CN.pdf
 Vim实用技巧.pdf
-[啊哈！算法].啊哈磊.扫描版.pdf
+啊哈！算法.pdf
 programmingwithgo.pdf
 《算法神探》一口气就能看完的神奇算法书.pdf
 啊哈c语言.pdf
 学习 Linux，101: 使用基本 SQL 命令.pdf
 日本蜡烛图技术.pdf
 日本蜡烛图教程.PDF
-
+\end{verbatim}
 
 ## ngspice
 
@@ -1002,9 +1000,9 @@ digraph G {
 
 ![dot output](stuff/dot.png)
 
-## GIT
+## git
 
-GIT大名鼎鼎，不多说。在我的MANJARO和MAC之间同步文件，以前都没有很好的利用起来。
+大名鼎鼎的git，不多说。在我的MANJARO和MAC之间同步文件，以前都没有很好的利用起来。
 
 总结一下：
 
@@ -1037,11 +1035,13 @@ digraph {
 }
 
 ```
-效果如下：
+
 ![](stuff/xsel.png)
+
+
 
 补充两个命令：
 
-- **在VIM中直接运行代码： % 或这 '<,> 也就是要运行的代码范围， 然后是 `w !dot -Tpng -o filename.png`；使用`w`命令把相关的内容写出给文件或者标准的输出; **
-- **一个很小的没有注意的地方： 在DOT语法中，要使用双引号，而不是单引号，单引号会出错。**
+- 在VIM中直接运行代码： % 或这 '<,> 也就是要运行的代码范围， 然后是 `w !dot -Tpng -o filename.png`；使用`w`命令把相关的内容写出给文件或者标准的输出; 
+- 一个很小的没有注意的地方： 在DOT语法中，要使用双引号，而不是单引号，单引号会出错。
 
